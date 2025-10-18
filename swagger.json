@@ -53,15 +53,15 @@
           }
         },
         "responses": {
-            "200": {
-                "description": "Filme atualizado com sucesso"
-            },
-            "404": {
-                "description": "Filme não encontrado"
-            },
-            "500": {
-                "description": "Falha ao atualizar o registro do filme"
-            }
+          "200": {
+            "description": "Filme atualizado com sucesso"
+          },
+          "404": {
+            "description": "Filme não encontrado"
+          },
+          "500": {
+            "description": "Falha ao atualizar o registro do filme"
+          }
         }
       },
       "delete": {
@@ -77,17 +77,52 @@
               "type": "integer"
             }
           }
-        ], 
+        ],
         "responses": {
-            "200": {
-                "description": "Filme removido com sucesso"
-            },
-            "404": {
-                "description": "O filme não foi encontrado"
-            },
-            "500": {
-                "description": "Falha ao remover o registro do filme"
+          "200": {
+            "description": "Filme removido com sucesso"
+          },
+          "404": {
+            "description": "O filme não foi encontrado"
+          },
+          "500": {
+            "description": "Falha ao remover o registro do filme"
+          }
+        }
+      }
+    },
+    "/movies/{genreName}": {
+      "get": {
+        "tags": ["Movie"],
+        "summary": "Filtrar filmes por gênero",
+        "parameters": [
+          {
+            "name": "genreName",
+            "in": "path",
+            "required": true,
+            "description": "Nome do gênero",
+            "schema": {
+              "type": "string"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movie"
+                  }
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Falha ao filtrar filtrar filmes por gênero"
+          }
         }
       }
     }
